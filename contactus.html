@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="feedbackstyles.css" />
+
+</head>
+<body>
+    <section class="contact section" id="contact">
+        <sapn class="section__subtitle">Get in touch</sapn>
+        <h3 class="section__title">Contact Me</h3>
+
+        <div class="contact__container container grid">
+            <div class="contact__content">
+                <h3 class="contact__title contact__title-info">Talk to me</h3>
+
+                <div class="contact__info">
+                    <div class="contact__card">
+                        <i class='bx bx-mail-send contact__card-icon'></i>
+                        <h3 class="contact__card-title">Email</h3>
+                        <span class="contact__card-data">juliangrsg@gmail.com</span>
+
+                        <a href="mailto:juliangrsg@gmail.com" target="_blank" class="contact__button">
+                            For Business <i class='bx bx-right-arrow contact__button-icon'></i>
+                        </a>
+                    </div>
+
+                    <div class="contact__card">
+                        <i class='bx bxl-whatsapp contact__card-icon'></i>
+                        <h3 class="contact__card-title">Whatsapp</h3>
+                        <span class="contact__card-data">+65 98287470</span>
+
+                        <a href="https://wa.me/+6598287470" target="_blank"
+                            class="contact__button">
+                            For Business <i class='bx bx-right-arrow contact__button-icon'></i>
+                        </a>
+                    </div>
+
+                    <div class="contact__card">
+                        <img src="assets/img/telegram.png" style="width: 30px; height: auto;">
+                        <h3 class="contact__card-title">Telegram</h3>
+                        <span class="contact__card-data">@juliantung</span>
+
+                        <a href="https://t.me/juliantung" target="_blank" class="contact__button">
+                            Get 200 Leads For Free <i class='bx bx-right-arrow contact__button-icon'></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <div class="contact__content" id="niggas">
+        <h3 class="contact__title contact__title-form">Write Me your Message</h3>
+    
+        <form id="contactForm" class="contact__form">
+            <!-- Replace with your Access Key -->
+            <input type="hidden" name="access_key" value="e5935dc1-8a66-47d7-b2fe-183e34324ff3">
+    
+            <!-- Honeypot Spam Protection -->
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+    
+            <div class="contact__form-div">
+                <label for="name" class="contact__form-tag">Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter name" class="contact__form-input" required>
+            </div>
+    
+            <div class="contact__form-div">
+                <label for="email" class="contact__form-tag">Mail</label>
+                <input type="email" id="email" name="email" placeholder="Enter email" class="contact__form-input" required>
+            </div>
+    
+            <div class="contact__form-div contact__form-area">
+                <label for="message" class="contact__form-tag">Message</label>
+                <textarea name="message" id="message" cols="30" rows="10" placeholder="Write your Message" class="contact__form-input" required></textarea>
+            </div>
+    
+            <button type="submit" class="button">Send Message</button>
+        </form>
+    
+        <div id="successMessage" style="display:none; color:green; margin-top:20px;">
+            Your message has been sent successfully!
+        </div>
+    </div>
+    
+    <script>
+        $('#contact').hide();
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            $('#contact').show();
+            $('#niggas').hide();
+            event.preventDefault();
+    
+            const form = event.target;
+            const formData = new FormData(form);
+            const successMessage = document.getElementById('successMessage');
+    
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    successMessage.style.display = 'block';
+                    form.reset();
+                } else {
+                    alert('There was an error submitting the form. Please try again.');
+                }
+            })
+            .catch(error => {
+                alert('There was an error submitting the form. Please try again.');
+            });
+        });
+    </script>
+</body>
+</html>
