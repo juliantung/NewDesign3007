@@ -3,10 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Star Rating</title>
-  <link rel="stylesheet" href="contactus.css">
+  <title>How did we do?</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="download-container">
+    <span class="download-button-container">
+        <a href="Product Catalogue copy.pdf" download="Product_Catalogue_2024.pdf"></a>
+    </span>
+</div>
   <div class="container">
     <div class="rating-container">
       <h1>How did we do today?</h1>
@@ -50,6 +55,23 @@
     </div>
   </div>
   
-  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+  const starInputs = document.querySelectorAll('input[name="stars"]');
+
+  starInputs.forEach(star => {
+    star.addEventListener('change', (event) => {
+      const selectedStar = event.target.id;
+      setTimeout(() => {
+        if (selectedStar === 'st1' || selectedStar === 'st2' || selectedStar === 'st3') {
+          window.location.href = 'feedback.html';
+        } else if (selectedStar === 'st4' || selectedStar === 'st5') {
+          window.location.href = 'https://g.page/r/CSBDce4Rxoo9EBE/review';
+        }
+      }, 500); // 0.5 second pause
+    });
+  });
+});
+  </script>
 </body>
 </html>

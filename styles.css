@@ -1,0 +1,160 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+:root {
+  --primary-colour: #0B111E;
+  --secondary-colour: hsl(233 80% 70%);
+  --body-color: hsl(var(--second-hue), 100%, 99%);
+  --star-colour: hsl(38 90% 55%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  transition: 0.3s;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--primary-colour);
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  text-align: center; /* Center text within the body */
+}
+
+.rating-container {
+  margin-bottom: 20px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.container__items {
+  display: flex;
+  flex-direction: row-reverse; /* Reverse the order of items */
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.container__items input {
+  display: none;
+}
+
+.container__items label {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Needed for the description positioning */
+}
+
+.star-stroke {
+  display: grid;
+  place-items: center;
+  width: 3em; /* Increase size */
+  height: 3em; /* Increase size */
+  background: var(--secondary-colour);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.star-fill {
+  width: 80%; /* Increase size */
+  height: 80%; /* Increase size */
+  background: var(--primary-colour);
+  clip-path: inherit;
+}
+
+input:hover ~ label .star-stroke,
+input:checked ~ label .star-stroke {
+  background: var(--star-colour);
+}
+
+input:checked ~ label .star-stroke .star-fill {
+  background: var(--star-colour);
+}
+
+.label-description::after {
+  content: attr(data-content);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 0.5em;
+  color: #fff;
+  text-align: center;
+  font-size: 1rem;
+  display: none;
+}
+
+label:hover .label-description::after {
+  display: block;
+}
+
+
+
+/* DOWNLOAD CONTAINER */
+
+.download-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:600&display=swap');
+
+span.download-button-container {
+  position: relative;
+  display: inline-flex;
+  width: 180px;
+  height: 55px;
+  margin: 0 15px;
+  perspective: 1000px;
+}
+
+span.download-button-container a {
+  font-size: 19px;
+  letter-spacing: 1px;
+  transform-style: preserve-3d;
+  transform: translateZ(-25px);
+  transition: transform .25s;
+  font-family: 'Montserrat', sans-serif;
+}
+
+span.download-button-container a:before,
+span.download-button-container a:after {
+  position: absolute;
+  content: "Download Catalogue";
+  height: 55px;
+  width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid black;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+span.download-button-container a:before {
+  color: #fff;
+  background: #000;
+  transform: rotateY(0deg) translateZ(25px);
+}
+
+span.download-button-container a:after {
+  color: #000;
+  transform: rotateX(90deg) translateZ(25px);
+}
+
+span.download-button-container a:hover {
+  transform: translateZ(-25px) rotateX(-90deg);
+}
